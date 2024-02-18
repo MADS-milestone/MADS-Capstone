@@ -1,17 +1,4 @@
-"""
-Tool for loading clinical trials data from Clinical Trials API v2.
-
-Use examples:
--------------
-
-python data_loader.py --nct_id NCT04590963 - load NCT04590963 and store in the persistent vector store
-python data_loader.py --nct_count 100 - load latest 100 NCTs and store in the persistent vector store
-"""
-
-
-
 import json
-
 import chromadb
 from llama_index.core import StorageContext, VectorStoreIndex, Settings
 from llama_index.core.node_parser import CodeSplitter
