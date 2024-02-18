@@ -13,3 +13,6 @@ python data_loader.py --nct_id NCT04590963
 ```
 python data_loader.py --nct_count 100
 ```
+> Important: 
+> * Python 3.9 - 3.11
+> * Please observe required libs in requirements.txt
