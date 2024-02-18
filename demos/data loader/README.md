@@ -11,6 +11,10 @@ python data_loader.py --nct_id NCT04590963
 ```
 python data_loader.py --nct_count 100
 ```
+- Data reader is there just as a PoC
+```
+python data_reader.py
+```
 > Important: 
 > * Python 3.9 - 3.11
 > * Please observe required libs in requirements.txt
