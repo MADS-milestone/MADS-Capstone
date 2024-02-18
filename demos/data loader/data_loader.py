@@ -11,8 +11,6 @@ python data_loader.py --nct_count 100 - load latest 100 NCTs and store in the pe
 
 
 import json
-import logging
-import sys
 
 import chromadb
 from llama_index.core import StorageContext, VectorStoreIndex, Settings
@@ -28,11 +26,12 @@ from dotenv import load_dotenv
 from psycopg2.extras import NamedTupleCursor
 import utils
 
-load_dotenv()
+load_dotenv(dotenv_path="../.env")
 
 # logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
+# Default Chroma DB collection name
 CT_RAG_COLLECTION = "CT_RAG"
 
 
@@ -118,7 +117,7 @@ def load_data(nct_id, nct_count):
     nodes = create_nodes(docs)
     embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
     print("Reading persistent Chroma DB from file system")
-    db = chromadb.PersistentClient(path="./chroma_db")
+    db = chromadb.PersistentClient(path="chroma_db")
     print(f"Looking for the {CT_RAG_COLLECTION} collection in the database..." )
     if CT_RAG_COLLECTION not in [col.name for col in db.list_collections()]:
         print(f"{CT_RAG_COLLECTION} collection was not found in Chroma DB, creating...")

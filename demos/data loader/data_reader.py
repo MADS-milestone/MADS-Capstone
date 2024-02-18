@@ -6,7 +6,7 @@ from llama_index.core import VectorStoreIndex
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
-load_dotenv()
+load_dotenv(dotenv_path="../.env")
 
 CT_RAG_COLLECTION = "CT_RAG"
 
@@ -15,7 +15,7 @@ def read_index():
     embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
 
     print("Attempting to read from chromadb persistent store")
-    db = chromadb.PersistentClient(path="./chroma_db")
+    db = chromadb.PersistentClient(path="chroma_db")
 
     if CT_RAG_COLLECTION not in [col.name for col in db.list_collections()]:
         sys.exit(f"{CT_RAG_COLLECTION} was not found in Chroma. Exiting...")
