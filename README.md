@@ -1,1 +1,1 @@
-# MADS-capstone
+# MADS Capstone
