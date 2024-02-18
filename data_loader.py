@@ -1,3 +1,15 @@
+"""
+Tool for loading clinical trials data from Clinical Trials API v2.
+
+Use examples:
+-------------
+
+python data_loader.py --nct_id NCT04590963 - load NCT04590963 and store in the persistent vector store
+python data_loader.py --nct_count 100 - load latest 100 NCTs and store in the persistent vector store
+"""
+
+
+
 import json
 import logging
 import sys
@@ -107,7 +119,7 @@ def load_data(nct_id, nct_count):
     embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
     print("Reading persistent Chroma DB from file system")
     db = chromadb.PersistentClient(path="./chroma_db")
-
+    print(f"Looking for the {CT_RAG_COLLECTION} collection in the database..." )
     if CT_RAG_COLLECTION not in [col.name for col in db.list_collections()]:
         print(f"{CT_RAG_COLLECTION} collection was not found in Chroma DB, creating...")
         chroma_collection = db.create_collection(CT_RAG_COLLECTION)
@@ -125,7 +137,7 @@ def load_data(nct_id, nct_count):
             store_nodes_override=True
         )
     else:
-        print(f"{CT_RAG_COLLECTION} was found in Chroma DB")
+        print(f"{CT_RAG_COLLECTION} collection was found in Chroma DB")
         ct_rag_collection = db.get_collection(CT_RAG_COLLECTION)
         vector_store = ChromaVectorStore(chroma_collection=ct_rag_collection)
         print("Restoring vector store index from the collection...")
