@@ -18,3 +18,7 @@ python data_reader.py
 > Important: 
 > * Python 3.9 - 3.11
 > * Please observe required libs in requirements.txt
+
+The following environment variables must be set in the .env file:
+* AACT_USERNAME  
+* AACT_PASSWORD
