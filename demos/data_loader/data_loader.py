@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 from psycopg2.extras import NamedTupleCursor
 import utils
 
-load_dotenv(dotenv_path="../.env")
+load_dotenv(dotenv_path=".env")
 
 # logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
