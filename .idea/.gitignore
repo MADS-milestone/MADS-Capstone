@@ -10,3 +10,5 @@
 # douglas added
 .ipynb_checkpoints/
 .DS_Store
+*.json
+*.txt
